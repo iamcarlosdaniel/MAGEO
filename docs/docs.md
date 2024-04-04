@@ -36,27 +36,52 @@ SIGEMUV (Sistema de Gestión Integral de Eventos y Marketing de la Universidad d
 The project has the following folder structure
 
 ```
-sitio_web/
-│
-├── assets/
-│   ├── css/
-│   │   └── styles.css
-│   │
-│   ├── js/
-│   │   └── script.js
-│   │
-│   └── images/
-│       └── logo.png
-│
-├── pages/
-│   ├── index.html
-│   ├── about.html
-│   └── contact.html
-│
-├── includes/
-│   ├── header.html
-│   ├── footer.html
-│   └── sidebar.html
-│
-└── README.md
+
+```
+
+### Rutas
+
+**Autenticacion**
+
+```
+port/api/register
+```
+
+```
+port/api/login
+```
+
+```
+port/api/logout
+```
+
+```
+port/api/profile
+```
+
+**Tasks Example**
+
+**Get Tasks**
+```
+port/api/tasks
+```
+
+**Get Task**
+```
+port/api/tasks/:id
+```
+
+**Post Task**
+```
+port/api/tasks/:id
+```
+
+**Delete Task**
+```
+port/api/tasks/:id
+```
+
+**Put Task**
+```
+port/api/tasks/:id
 ```

@@ -1,0 +1,59 @@
+{
+    "Id": "id",
+    "Fecha de solicitud": "12-12-12",
+    "Sede": "sede",
+    "Usuario": [
+        {
+            "Id": "idUsuario",
+            "Nombre": "nombre",
+            "Unidad o departamento solicitante": "departamento",
+            "Area": "area"
+        }
+    ],  
+    "Nombre del Evento/Actividad": "nombre",
+    "Descripcion del Evento/Actividad": "descripcion general",
+    "Horarios": [
+        {
+          "Lugar": "Lugar1",
+          "Fecha": "Fecha1",
+          "Hora": "Hora1",
+          "Modalidad": "Modalidad1",
+          "Tipo de Evento/Actividad": "Tipo1",
+          "Coordinacion": "coordinacion1",
+          "Dirigido": "dirigido1",
+          "Objetivo de la Actividad": "Objetivo1",
+          "Alcance": "Alcance1",
+          "Descripcion": "Descripcion1",
+          "Material Visual": "Material visual1"
+        },
+        {
+          "Lugar": "Lugar2",
+          "Fecha": "Fecha2",
+          "Hora": "Hora2",
+          "Modalidad": "Modalidad2",
+          "Tipo de Evento/Actividad": "Tipo2",
+          "Coordinacion": "coordinacion2",
+          "Dirigido": "dirigido2",
+          "Objetivo de la Actividad": "Objetivo2",
+          "Alcance": "Alcance2",
+          "Descripcion": "Descripcion2",
+          "Material Visual": "Material visual2"
+        },
+        {
+          "Lugar": "Lugar3",
+          "Fecha": "Fecha3",
+          "Hora": "Hora3",
+          "Modalidad": "Modalidad3",
+          "Tipo de Evento/Actividad": "Tipo3",
+          "Coordinacion": "coordinacion3",
+          "Dirigido": "dirigido3",
+          "Objetivo de la Actividad": "Objetivo3",
+          "Alcance": "Alcance3",
+          "Descripcion": "Descripcion3",
+          "Material Visual": "Material visual3"
+        }
+      ],
+    "Enlace de registro":"enlace",
+    "Control de Asistencia": "asistencia"
+  }
+  

@@ -73,6 +73,14 @@ SIGEMUV would not be possible without you all. We appreciate your help!
 
 This project is under the MIT License - Refer to the file [LICENSE.md](LICENSE.md) for more details.
 
+## Disclaimer:
+
+The content provided in this SIGEMUV repository (Integrated Events and Marketing Management System of Universidad del Valle) is strictly conceptual and for learning purposes only. The code presented here is purely illustrative and should not be used in production environments without proper validation and adaptation by qualified professionals.
+
+Users are responsible for understanding and applying best development practices, as well as ensuring the quality and security of any implementation based on this code. Universidad del Valle and contributors to this repository assume no liability for any damages or inconveniences arising from the direct or indirect use of this material.
+
+Users are strongly advised to consult with experts in the field before implementing any solution based on the content of this repository. Accessing and using this code implies acceptance of these disclaimer terms.
+
 ## Contact
 
 - Website: [iamcarlosdaniel.com](www.iamcarlosdaniel.com)
