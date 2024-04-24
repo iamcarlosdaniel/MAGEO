@@ -1,0 +1,49 @@
+{
+    "id": "id",
+    "tituloPieza": "Titulo de la pieza",
+    "fecha": "10-10-2000",
+    "sede": "sede",
+    "area": "area",
+    "usuario": [
+        {
+            "id": 1,
+            "role": "role",
+            "nombre": "Juan",
+            "apellido": "Pérez",
+            "email": "juan@example.com",
+            "telefono": "12345678",
+            "fechaNacimiento": "1990-05-15",
+            "genero": "masculino",
+            "sede":"sede",
+            "departamento": "departamen",
+            "cargo":"cargo"
+        }
+    ],
+    "publicoObjetivo": [
+        {
+            "publicoOne": [
+                {
+                    "titulo": "titulo",
+                    "valor": "valor"
+                }
+            ],
+            "publicoTwo": [
+                {
+                    "titulo": "titulo",
+                    "valor": "valor"
+                }
+            ],
+            "publicoThree": [
+                {
+                    "titulo": "titulo",
+                    "valor": "valor"
+                }
+            ]
+        }
+    ],
+    "objetivoPieza": "Objetico de la pieza",
+    "alcance": "Regional o nacional",
+    "Descripcion": "Descripcion",
+    "enlaces": "enlaces",
+    "enlaceRegistro": "Enlace de registro"
+}

@@ -1,81 +1,81 @@
-import User from '../models/user.model.js'
-import bcrypt from 'bcryptjs'
-import {createAccessToken} from '../libs/jwt.js'
+import { authService } from "../services/auth.service.js";
 
-export const register = async (req, res) => {
-    const {email, password, username} = req.body
+const register = async (req, res) => {
+  try {
+    const userData = req.body;
+    const { user, token } = await authService.register(userData);
 
-    try {
-        const passwordHash = await bcrypt.hash(password, 10);
-
-        const newUser = new User({
-            username,
-            email,
-            password: passwordHash,
-        });
-    
-        const userSaved = await newUser.save();
-        const token = await createAccessToken({id: userSaved._id});
-
-        res.cookie("token", token); 
-        res.json({
-             id: userSaved._id,
-             username: userSaved.username,
-             email: userSaved.email,
-             createdAt: userSaved.createdAt,
-             updatedAt: userSaved.updatedAt,
-         });
-    } catch (error) {
-        res.status(500).json({message: error.message});
-    }
-};
-
-export const login = async (req, res) => {
-    const {email, password} = req.body
-
-    try {
-
-        const userFound = await User.findOne({email});
-        if (!userFound) return res.status(400).json({message: "User not found"});
-
-        const isMatch = await bcrypt.compare(password, userFound.password);
-        if (!isMatch) return res.status(400).json({message: "Incorrect password"});
-    
-        const token = await createAccessToken({id: userFound._id});
-
-        res.cookie("token", token); 
-        res.json({
-             id: userFound._id,
-             username: userFound.username,
-             email: userFound.email,
-             createdAt: userFound.createdAt,
-             updatedAt: userFound.updatedAt,
-             status:"Usuario encontrado"
-         })
-    } catch (error) {
-        res.status(500).json({message: error.message});
-    }
-};
-
-export const logout = (req, res) => {
-    res.cookie('token', "", {
-        expires: new Date(0),
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+      httpOnly: false,
     });
-    return res.sendStatus(200);
-}
 
-export const profile = async (req, res) => {
-    const userFound = await User.findById(req.user.id)
+    //res.status(200).send({ status: "OK", data: userData });
+    res.status(200).send({ status: "OK" });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
 
-    if(!userFound) return res.status(400).json({ message: "User not found"});
+const login = async (req, res) => {
+  const { email, password } = req.body;
 
-    return res.json({
-        id: userFound._id,
-        username: userFound.username,
-        email: userFound.email,
-        createAt: userFound.createAt,
-        updateAt: userFound.updateAt,
-    })
-    console.log(req.user)
-    res.send('profile')
-}
+  try {
+    const { user, token } = await authService.login(email, password);
+
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+      httpOnly: false,
+    });
+
+    //res.status(200).send({ status: "OK", data: user });
+    res.status(200).send({ status: "OK" });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const logout = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    await authService.logout(token);
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+
+    res.status(200).send({ status: "OK" });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const authStatus = async (req, res) => {
+  try {
+    const { token } = req.cookies;
+    const user = await authService.authStatus(token);
+
+    //res.status(200).send({ status: "OK", data: user });
+    res.status(200).send({ status: "OK", data: "Authorized" });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+export const authController = {
+  register,
+  login,
+  logout,
+  authStatus,
+};

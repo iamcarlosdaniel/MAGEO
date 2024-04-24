@@ -1,0 +1,130 @@
+{
+  "id": "id",
+  "requestDate": "12-12-12",
+  "venue": "venue",
+  "user": [
+    {
+      "id": 1,
+      "role": "role",
+      "firstName": "Juan",
+      "lastName": "Pérez",
+      "email": "juan@example.com",
+      "phone": "12345678",
+      "birthdate": "1990-05-15",
+      "gender": "male",
+      "venue": "venue",
+      "department": "department",
+      "position": "position"
+    }
+  ],
+  "eventName": "name",
+  "eventDescription": "general description",
+  "area": "area",
+  "schedules": [
+    {
+      "location": "Location",
+      "date": "Date",
+      "time": "Time",
+      "modality": "Modality",
+      "eventType": "Type",
+      "coordination": "coordination",
+      "targetedAudience": [
+        {
+          "publicOne": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ],
+          "publicTwo": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ],
+          "publicThree": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "activityObjective": "Objective",
+      "scope": "Scope",
+      "description": "Description",
+      "visualMaterial": "Visual Material"
+    },
+    {
+      "location": "Location",
+      "date": "Date",
+      "time": "Time",
+      "modality": "Modality",
+      "eventType": "Type",
+      "coordination": "coordination",
+      "targetedAudience": [
+        {
+          "publicOne": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ],
+          "publicTwo": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ],
+          "publicThree": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "activityObjective": "Objective",
+      "scope": "Scope",
+      "description": "Description",
+      "visualMaterial": "Visual Material"
+    },
+    {
+      "location": "Location",
+      "date": "Date",
+      "time": "Time",
+      "modality": "Modality",
+      "eventType": "Type",
+      "coordination": "coordination",
+      "targetedAudience": [
+        {
+          "publicOne": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ],
+          "publicTwo": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ],
+          "publicThree": [
+            {
+              "title": "title",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "activityObjective": "Objective",
+      "scope": "Scope",
+      "description": "Description",
+      "visualMaterial": "Visual Material"
+    }
+  ],
+  "registrationLink": "link",
+  "attendanceControl": "attendance",
+  "priority": "area + audiences + activityObjective + scope"
+}

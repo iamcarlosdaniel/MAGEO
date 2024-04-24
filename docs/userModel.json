@@ -1,14 +1,15 @@
 {
     "id": 1,
-    "role": "role",
-    "nombre": "Juan",
-    "apellido": "Pérez",
-    "correo_electronico": "juan@example.com",
-    "telefono": "12345678",
-    "fecha_nacimiento": "1990-05-15",
-    "genero": "masculino",
-    "sede":"sede",
-    "departamento": "departamen",
-    "cargo":"cargo"
+    "username": "username",
+    "role": "admin",
+    "first_name": "Juan",
+    "last_name": "Pérez",
+    "email": "juan@example.com",
+    "password": "contrasena",
+    "phone": "12345678",
+    "date_of_birth": "1990-05-15",
+    "gender": "masculino",
+    "campus": "sede",
+    "department": "departamento",
+    "position": "cargo"
 }
-  

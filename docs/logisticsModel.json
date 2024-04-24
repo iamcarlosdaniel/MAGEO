@@ -1,0 +1,162 @@
+{
+    "Id": "id",
+    "evento": [
+        {
+            "id": "id",
+            "fechaSolicitud": "12-12-12",
+            "sede": "sede",
+            "usuario": [
+                {
+                    "id": 1,
+                    "role": "role",
+                    "nombre": "Juan",
+                    "apellido": "Pérez",
+                    "email": "juan@example.com",
+                    "telefono": "12345678",
+                    "fechaNacimiento": "1990-05-15",
+                    "genero": "masculino",
+                    "sede":"sede",
+                    "departamento": "departamen",
+                    "cargo":"cargo"
+                }
+            ],  
+            "nombreEvento": "nombre",
+            "descripcionEvento": "descripcion general",
+            "horarios": [
+                {
+                  "lugar": "Lugar",
+                  "fecha": "Fecha",
+                  "hora": "Hora",
+                  "modalidad": "Modalidad",
+                  "tipoEvento": "Tipo",
+                  "coordinacion": "coordinacion",
+                  "dirigido": "dirigido",
+                  "objetivoActividad": "Objetivo",
+                  "alcance": "Alcance",
+                  "descripcion": "Descripcion",
+                  "materialVisual": "Material visual"
+                },
+                {
+                    "lugar": "Lugar",
+                    "fecha": "Fecha",
+                    "hora": "Hora",
+                    "modalidad": "Modalidad",
+                    "tipoEvento": "Tipo",
+                    "coordinacion": "coordinacion",
+                    "dirigido": "dirigido",
+                    "objetivoActividad": "Objetivo",
+                    "alcance": "Alcance",
+                    "descripcion": "Descripcion",
+                    "materialVisual": "Material visual"
+                },
+                {
+                    "lugar": "Lugar",
+                    "fecha": "Fecha",
+                    "hora": "Hora",
+                    "modalidad": "Modalidad",
+                    "tipoEvento": "Tipo",
+                    "coordinacion": "coordinacion",
+                    "dirigido": "dirigido",
+                    "objetivoActividad": "Objetivo",
+                    "alcance": "Alcance",
+                    "descripcion": "Descripcion",
+                    "materialVisual": "Material visual"
+                  }
+              ],
+            "enlaceRegistro":"enlace",
+            "controlAsistencia": "asistencia"
+        }        
+    ],
+    "mobiliarioServiciosPropios": [
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "observaciones": "observaciones"
+        }
+    ],
+    "mobilirioServiciosTerceros": [
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "unidad": "unidad",
+            "precioUnitario": "precio unitario",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "unidad": "unidad",
+            "precioUnitario": "precio unitario",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "unidad": "unidad",
+            "precioUnitario": "precio unitario",
+            "observaciones": "observaciones"
+        }
+    ],
+    "alimentacionPropios": [
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "observaciones": "observaciones"
+        }
+    ],
+    "alimentacionTerceros": [
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "unidad": "unidad",
+            "precioUnitario": "precio unitario",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "unidad": "unidad",
+            "precioUnitario": "precio unitario",
+            "observaciones": "observaciones"
+        },
+        {
+            "numeroItem": "num",
+            "nombre": "nombre",
+            "cantidad": "cantidad",
+            "unidad": "unidad",
+            "precioUnitario": "precio unitario",
+            "observaciones": "observaciones"
+        }
+    ]
+}
