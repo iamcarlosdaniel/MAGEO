@@ -8,7 +8,6 @@ const eventSchema = new mongoose.Schema(
       default: Date.now,
       required: true,
     },
-    campus: {},
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -54,3 +53,5 @@ const eventSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+export default mongoose.model("Event", eventSchema);

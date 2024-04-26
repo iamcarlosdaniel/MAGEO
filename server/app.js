@@ -7,6 +7,7 @@ import v1AuthRoutes from "./v1/routes/auth.routes.js";
 import v1TasksRoutes from "./v1/routes/task.routes.js";
 import V1UserRoutes from "./v1/routes/user.routes.js";
 import V1SpectatorRoutes from "./v1/routes/spectator.routes.js";
+import V1EventRoutes from "./v1/routes/event.routes.js";
 import { FRONTEND_URL } from "./config.js";
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use("/api/v1", v1AuthRoutes);
 app.use("/api/v1", v1TasksRoutes);
 app.use("/api/v1", V1UserRoutes);
+app.use("/api/v1", V1EventRoutes);
 app.use("/api/v1", V1SpectatorRoutes);
 
 //Hello World!

@@ -29,7 +29,7 @@ const createSpectator = async (spectatorData, userId) => {
       value: spectatorData.value,
       user: userId,
     });
-    newSpectator.save();
+    await newSpectator.save();
     return newSpectator;
   } catch (error) {
     throw new Error(error.message);

@@ -1,16 +1,10 @@
 import { Router } from "express";
-import { authRequired } from "../middlewares/validateToken.js";
-import {
-  getEvents,
-  getEvent,
-  createEvent,
-  updateEvent,
-  deleteEvent,
-} from "../controllers/events.controller.js";
+import { authRequired } from "../../middlewares/auth.middleware.js";
+import { eventController } from "../../controllers/event.controller.js";
 
 const router = Router();
 
-router.get("/events", authRequired, getEvents);
-router.get("/event/:id", authRequired, getEvent);
-router.post("");
+router.get("/events", authRequired, eventController.getAllEvents);
+router.get("/events/:id", authRequired, eventController.getOneEvent);
+router.post("/events", authRequired, eventController.createEvent);
 export default router;
