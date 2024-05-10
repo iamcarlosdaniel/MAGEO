@@ -1,8 +1,8 @@
-import { eventServicie } from "../services/event.service.js";
+import { eventService } from "../services/event.service.js";
 
-export const getAllEvents = async (req, res) => {
+const getAllEvents = async (req, res) => {
   try {
-    const allEvents = await eventServicie.getAllEvents();
+    const allEvents = await eventService.getAllEvents();
     res.status(200).send({ status: "OK", data: allEvents });
   } catch (error) {
     res
@@ -11,9 +11,9 @@ export const getAllEvents = async (req, res) => {
   }
 };
 
-export const getOneEvent = async (req, res) => {
+const getOneEvent = async (req, res) => {
   try {
-    const eventFound = await eventServicie.getOneEvent(req.params.id);
+    const eventFound = await eventService.getOneEvent(req.params.id);
     res.status(200).send({ status: "OK", data: eventFound });
   } catch (error) {
     res
@@ -22,9 +22,9 @@ export const getOneEvent = async (req, res) => {
   }
 };
 
-export const createEvent = async (req, res) => {
+const createEvent = async (req, res) => {
   try {
-    const newEvent = await eventServicie.createEvent(req.body, req.user.id);
+    const newEvent = await eventService.createEvent(req.body, req.user.id);
     res.status(200).send({ status: "OK", data: newEvent });
   } catch (error) {
     res
@@ -33,9 +33,10 @@ export const createEvent = async (req, res) => {
   }
 };
 
-export const updateEvent = async (req, res) => {
+const updateEvent = async (req, res) => {
   try {
-    res.status(200).send({ status: "OK", data: data });
+    const eventUpdate = await eventService.updateEvent(req.params.id, req.body);
+    res.status(200).send({ status: "OK", data: eventUpdate });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -43,9 +44,10 @@ export const updateEvent = async (req, res) => {
   }
 };
 
-export const deleteEvent = async (req, res) => {
+const deleteEvent = async (req, res) => {
   try {
-    res.status(200).send({ status: "OK", data: data });
+    const deleteEvent = await eventService.deleteEvent(req.params.id);
+    res.status(200).send({ status: "OK", data: deleteEvent });
   } catch (error) {
     res
       .status(error?.status || 500)

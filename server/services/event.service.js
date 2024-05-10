@@ -15,7 +15,6 @@ const getOneEvent = async (eventId) => {
     if (!eventFound) {
       throw new Error("Event not found");
     }
-
     return eventFound;
   } catch (error) {
     throw new Error(error.message);
@@ -41,9 +40,30 @@ const createEvent = async (eventData, userId) => {
   }
 };
 
-const updateEvent = async (userId, eventData) => {
+const updateEvent = async (eventId, eventData) => {
   try {
-    const eventUpdate = await Event.findByIdAndUpdate({});
+    const {
+      event_name,
+      event_description,
+      area,
+      schedules,
+      registration_link,
+      attendnce_control,
+      priority,
+    } = eventData;
+    const eventUpdate = await Event.findByIdAndUpdate(
+      { _id: eventId },
+      {
+        event_name,
+        event_description,
+        area,
+        schedules,
+        registration_link,
+        attendnce_control,
+        priority,
+      },
+      { new: true }
+    );
     return eventUpdate;
   } catch (error) {
     throw new Error(error.message);
@@ -56,12 +76,13 @@ const deleteEvent = async (eventId) => {
     if (!eventDelete) {
       throw new Error("Event not found");
     }
+    return eventDelete;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const eventServicie = {
+export const eventService = {
   getAllEvents,
   getOneEvent,
   createEvent,

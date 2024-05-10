@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const eventSchema = new mongoose.Schema(
   {
     //modelo del formato para eventos
-    requestDate: {
+    request_date: {
       type: Date,
       default: Date.now,
       required: true,
     },
-    user: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,

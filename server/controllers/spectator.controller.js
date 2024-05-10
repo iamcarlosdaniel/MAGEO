@@ -11,6 +11,19 @@ const getAllSpectators = async (req, res) => {
   }
 };
 
+const getAllMySpectators = async (req, res) => {
+  try {
+    const allMySpectators = await spectatorService.getAllMySpectators(
+      req.user.id
+    );
+    res.status(200).send({ status: "OK", data: allMySpectators });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
 const getOneSpectator = async (req, res) => {
   try {
     const spectatorFound = await spectatorService.getOneSpectator(
@@ -67,6 +80,7 @@ const deleteSpectator = async (req, res) => {
 
 export const spectatorController = {
   getAllSpectators,
+  getAllMySpectators,
   getOneSpectator,
   createSpectator,
   updateSpectator,

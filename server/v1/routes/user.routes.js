@@ -1,16 +1,28 @@
 import { Router } from "express";
+import { authenticationRequired } from "../../middlewares/authentication.middleware.js";
 import { userController } from "../../controllers/user.controller.js";
-import { authRequired } from "../../middlewares/auth.middleware.js";
 
 const router = Router();
 
-//View user information
-router.get("/auth/users", authRequired, userController.getUser);
+//See user information by Id
+router.get(
+  "/auth/users/:id([0-9a-fA-F]{24})",
+  authenticationRequired,
+  userController.getUserInformation
+);
 
-//Update user information
-router.post("/auth/users", authRequired, userController.updateUser);
+//See my user information
+router.get(
+  "/auth/users/me",
+  authenticationRequired,
+  userController.getMyUserInformation
+);
 
-//Delete user
-router.post("/auth/users", authRequired, userController.deleteUser);
+//Update my user information
+router.put(
+  "/auth/users/me",
+  authenticationRequired,
+  userController.updateMyUserInformation
+);
 
 export default router;

@@ -1,8 +1,8 @@
 import { userService } from "../services/user.service.js";
 
-const getUser = async (req, res) => {
+const getUserInformation = async (req, res) => {
   try {
-    const userFound = await userService.getUser(req.user.id);
+    const userFound = await userService.getUserInformation(req.params.id);
     res.status(200).send({ status: "OK", data: userFound });
   } catch (error) {
     res
@@ -11,18 +11,33 @@ const getUser = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
+const getMyUserInformation = async (req, res) => {
   try {
-  } catch (error) {}
+    const userFound = await userService.getMyUserInformation(req.user.id);
+    res.status(200).send({ status: "OK", data: userFound });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
-const deleteUser = async (req, res) => {
+const updateMyUserInformation = async (req, res) => {
   try {
-  } catch (error) {}
+    const userUpdate = await userService.updateMyUserInformation(
+      req.user.id,
+      req.body
+    );
+    res.status(200).send({ status: "OK", data: userUpdate });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
 };
 
 export const userController = {
-  getUser,
-  updateUser,
-  deleteUser,
+  getUserInformation,
+  getMyUserInformation,
+  updateMyUserInformation,
 };
