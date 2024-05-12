@@ -24,11 +24,13 @@ const advertisingPieceSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    spectators: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Spectator",
-      required: true,
-    },
+    spectators: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Spectator",
+        required: true,
+      },
+    ],
     goals: {
       type: String,
       required: true,
@@ -52,6 +54,11 @@ const advertisingPieceSchema = new mongoose.Schema(
       type: String,
       enum: ["Pending", "Approved", "Rejected"],
       default: "Pending",
+      required: true,
+    },
+    observations: {
+      type: String,
+      trim: true,
     },
   },
   { collection: "advertising_pieces" },

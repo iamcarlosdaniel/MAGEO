@@ -12,7 +12,7 @@ const spectatorSchema = new mongoose.Schema(
       require: true,
       trim: true,
     },
-    user: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,

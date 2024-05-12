@@ -12,6 +12,18 @@ const getAllAdvertisingPieces = async (req, res) => {
   }
 };
 
+const getAllMyAdvertisingPieces = async (req, res) => {
+  try {
+    const allMyAdvertisingPieces =
+      await advertisingPieceService.getAllMyAdvertisingPieces(req.user.id);
+    res.status(200).send({ status: "OK", data: allMyAdvertisingPieces });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
 const getOneAdvertisingPiece = async (req, res) => {
   try {
     const advertisingPieceFound =
@@ -66,10 +78,40 @@ const deleteAdvertisingPiece = async (req, res) => {
   }
 };
 
+const acceptAdvertisingPiece = async (req, res) => {
+  try {
+    const acceptedAdvertisingPiece =
+      await advertisingPieceService.acceptAdvertisingPiece(req.params.id);
+    res.status(200).send({ status: "OK", data: acceptedAdvertisingPiece });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const rejectAdvertisingPiece = async (req, res) => {
+  try {
+    const rejectedAdvertisingPiece =
+      await advertisingPieceService.rejectAdvertisingPiece(
+        req.params.id,
+        req.body.observations
+      );
+    res.status(200).send({ status: "OK", data: rejectedAdvertisingPiece });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
 export const advertisingPieceController = {
   getAllAdvertisingPieces,
+  getAllMyAdvertisingPieces,
   getOneAdvertisingPiece,
   createAdvertisingPiece,
   updateAdvertisingPiece,
   deleteAdvertisingPiece,
+  acceptAdvertisingPiece,
+  rejectAdvertisingPiece,
 };

@@ -11,6 +11,17 @@ const getAllEvents = async (req, res) => {
   }
 };
 
+const getAllMyEvents = async (req, res) => {
+  try {
+    const allMyEvents = await eventService.getAllMyEvents(req.user.id);
+    res.status(200).send({ status: "OK", data: allMyEvents });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
 const getOneEvent = async (req, res) => {
   try {
     const eventFound = await eventService.getOneEvent(req.params.id);
@@ -46,8 +57,33 @@ const updateEvent = async (req, res) => {
 
 const deleteEvent = async (req, res) => {
   try {
-    const deleteEvent = await eventService.deleteEvent(req.params.id);
-    res.status(200).send({ status: "OK", data: deleteEvent });
+    const eventDelete = await eventService.deleteEvent(req.params.id);
+    res.status(200).send({ status: "OK", data: eventDelete });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const acceptEvent = async (req, res) => {
+  try {
+    const acceptedEvent = await eventService.acceptEvent(req.params.id);
+    res.status(200).send({ status: "OK", data: acceptedEvent });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const rejectEvent = async (req, res) => {
+  try {
+    const rejectedEvent = await eventService.rejectEvent(
+      req.params.id,
+      req.body.observations
+    );
+    res.status(200).send({ status: "OK", data: rejectedEvent });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -57,8 +93,11 @@ const deleteEvent = async (req, res) => {
 
 export const eventController = {
   getAllEvents,
+  getAllMyEvents,
   getOneEvent,
   createEvent,
   updateEvent,
   deleteEvent,
+  acceptEvent,
+  rejectEvent,
 };

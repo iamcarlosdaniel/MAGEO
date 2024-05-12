@@ -9,6 +9,7 @@ import v1UserRoutes from "./v1/routes/user.routes.js";
 import v1SpectatorRoutes from "./v1/routes/spectator.routes.js";
 import v1EventRoutes from "./v1/routes/event.routes.js";
 import v1AdvertisingPieceRoutes from "./v1/routes/advertisingPiece.routes.js";
+import v1LogisticRoutes from "./v1/routes/logistic.routes.js";
 import v1ProtocolRoutes from "./v1/routes/protocol.routes.js";
 import { FRONTEND_URL } from "./config.js";
 
@@ -32,6 +33,7 @@ app.use("/api/v1", v1UserRoutes);
 app.use("/api/v1", v1EventRoutes);
 app.use("/api/v1", v1SpectatorRoutes);
 app.use("/api/v1", v1AdvertisingPieceRoutes);
+app.use("/api/v1", v1LogisticRoutes);
 app.use("/api/v1", v1ProtocolRoutes);
 
 //Hello World!

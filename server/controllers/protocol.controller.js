@@ -11,6 +11,17 @@ const getAllProtocols = async (req, res) => {
   }
 };
 
+const getAllMyProtocols = async (req, res) => {
+  try {
+    const allMyProtocols = await protocolService.getAllMyProtocols(req.user.id);
+    res.status(200).send({ status: "OK", data: allMyProtocols });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
 const getOneProtocol = async (req, res) => {
   try {
     const protocolFound = await protocolService.getOneProtocol(req.params.id);
@@ -52,8 +63,35 @@ const updateProtocol = async (req, res) => {
 
 const deleteProtocol = async (req, res) => {
   try {
-    const deleteProtocol = await protocolService.deleteProtocol(req.params.id);
-    res.status(200).send({ status: "OK", data: deleteProtocol });
+    const protocolDelete = await protocolService.deleteProtocol(req.params.id);
+    res.status(200).send({ status: "OK", data: protocolDelete });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const acceptProtocol = async (req, res) => {
+  try {
+    const acceptedProtocol = await protocolService.acceptProtocol(
+      req.params.id
+    );
+
+    res.status(200).send({ status: "OK", data: acceptedProtocol });
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+const rejectProtocol = async (req, res) => {
+  try {
+    const rejectedProtocol = await protocolService.rejectProtocol(
+      req.params.id
+    );
+    res.status(200).send({ status: "OK", data: rejectedProtocol });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -63,8 +101,11 @@ const deleteProtocol = async (req, res) => {
 
 export const protocolController = {
   getAllProtocols,
+  getAllMyProtocols,
   getOneProtocol,
   createProtocol,
   updateProtocol,
   deleteProtocol,
+  acceptProtocol,
+  rejectProtocol,
 };

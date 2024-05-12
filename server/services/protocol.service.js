@@ -9,6 +9,15 @@ const getAllProtocols = async () => {
   }
 };
 
+const getAllMyProtocols = async (userId) => {
+  try {
+    const allMyProtocols = await Logistic.find({ user_id: userId });
+    return allMyProtocols;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const getOneProtocol = async (protocolId) => {
   try {
     const protocolFound = await Protocol.findById(protocolId);
@@ -21,14 +30,10 @@ const getOneProtocol = async (protocolId) => {
   }
 };
 
-const createProtocol = async (protocolData, userId) => {
+const createProtocol = async (protocolData) => {
   try {
     const newProtocol = new Protocol({
-      master_ceremonies: protocolData.master_ceremonies,
-      event_id: protocolData.event_id,
-      service_requirements: protocolData.service_requirements,
-      inauguration_data: protocolData.inauguration_data,
-      closing_data: protocolData.closing_data,
+      ...protocolData,
     });
     await newProtocol.save();
     return newProtocol;
@@ -39,24 +44,11 @@ const createProtocol = async (protocolData, userId) => {
 
 const updateProtocol = async (protocolId, protocolData) => {
   try {
-    const {
-      master_ceremonies,
-      event_id,
-      service_requirements,
-      inauguration_data,
-      closing_data,
-    } = protocolData;
     const protocolUpdate = await Protocol.findByIdAndUpdate(
       {
         _id: protocolId,
       },
-      {
-        master_ceremonies,
-        event_id,
-        service_requirements,
-        inauguration_data,
-        closing_data,
-      },
+      protocolData,
       { new: true }
     );
     return protocolUpdate;
@@ -71,7 +63,33 @@ const deleteProtocol = async (protocolId) => {
     if (!protocolDelete) {
       throw new Error("Protocol not fount");
     }
-    return protocolDelete;
+    return { message: "Protocol removed correctly" };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const acceptProtocol = async (protocolId) => {
+  try {
+    const acceptedProtocol = await Protocol.findByIdAndUpdate(
+      { _id: protocolId },
+      { state: "Accept", $unset: { observation: "" } },
+      { new: true }
+    );
+    return acceptedProtocol;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const rejectProtocol = async (protocolId) => {
+  try {
+    const rejectedProtocol = await Protocol.findByIdAndUpdate(
+      { _id: protocolId },
+      { state: "Reject", $unset: { observation: "" } },
+      { new: true }
+    );
+    return rejectedProtocol;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -79,8 +97,11 @@ const deleteProtocol = async (protocolId) => {
 
 export const protocolService = {
   getAllProtocols,
+  getAllMyProtocols,
   getOneProtocol,
   createProtocol,
   updateProtocol,
   deleteProtocol,
+  acceptProtocol,
+  rejectProtocol,
 };

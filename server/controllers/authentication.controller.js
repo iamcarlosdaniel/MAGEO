@@ -72,7 +72,12 @@ const logout = async (req, res) => {
 const authStatus = async (req, res) => {
   try {
     const authStatus = await authenticationService.authStatus(req.user.id);
-    res.status(200).send({ status: "OK", data: authStatus });
+    res
+      .status(200)
+      .send({
+        status: "OK",
+        data: { message: "Authentication", user: authStatus },
+      });
   } catch (error) {
     res
       .status(error?.status || 500)

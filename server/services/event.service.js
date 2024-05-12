@@ -2,8 +2,33 @@ import Event from "../database/models/event.model.js";
 
 const getAllEvents = async () => {
   try {
-    const allEvents = await Event.find();
+    const allEvents = await Event.find()
+      .populate({
+        path: "user_id",
+        select: "first_name last_name email campus department position",
+      })
+      .populate({
+        path: "schedules.spectators",
+        select: "title value",
+      });
     return allEvents;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getAllMyEvents = async (userId) => {
+  try {
+    const allMyEvents = await Event.find({ user_id: userId })
+      .populate({
+        path: "user_id",
+        select: "first_name last_name email campus department position",
+      })
+      .populate({
+        path: "schedules.spectators",
+        select: "title value",
+      });
+    return allMyEvents;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -11,7 +36,15 @@ const getAllEvents = async () => {
 
 const getOneEvent = async (eventId) => {
   try {
-    const eventFound = await Event.findById(eventId);
+    const eventFound = await Event.findById(eventId)
+      .populate({
+        path: "user_id",
+        select: "first_name last_name email campus department position",
+      })
+      .populate({
+        path: "schedules.spectators",
+        select: "title value",
+      });
     if (!eventFound) {
       throw new Error("Event not found");
     }
@@ -24,14 +57,8 @@ const getOneEvent = async (eventId) => {
 const createEvent = async (eventData, userId) => {
   try {
     const newEvent = new Event({
-      user: userId,
-      event_name: eventData.event_name,
-      event_description: eventData.event_description,
-      area: eventData.area,
-      schedules: eventData.schedules,
-      registration_link: eventData.registration_link,
-      attendance_control: eventData.attendance_control,
-      priority: eventData.priority,
+      user_id: userId,
+      ...eventData,
     });
     await newEvent.save();
     return newEvent;
@@ -42,26 +69,13 @@ const createEvent = async (eventData, userId) => {
 
 const updateEvent = async (eventId, eventData) => {
   try {
-    const {
-      event_name,
-      event_description,
-      area,
-      schedules,
-      registration_link,
-      attendnce_control,
-      priority,
-    } = eventData;
+    //ELIMNAR EL STATE DEL EVENTDATA
+    if (eventData.state) {
+      delete eventData.state;
+    }
     const eventUpdate = await Event.findByIdAndUpdate(
       { _id: eventId },
-      {
-        event_name,
-        event_description,
-        area,
-        schedules,
-        registration_link,
-        attendnce_control,
-        priority,
-      },
+      eventData,
       { new: true }
     );
     return eventUpdate;
@@ -76,7 +90,33 @@ const deleteEvent = async (eventId) => {
     if (!eventDelete) {
       throw new Error("Event not found");
     }
-    return eventDelete;
+    return { message: "Event removed correctly" };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const acceptEvent = async (eventId) => {
+  try {
+    const acceptedEvent = await Event.findByIdAndUpdate(
+      { _id: eventId },
+      { state: "Accept", $unset: { observations: "" } },
+      { new: true }
+    );
+    return acceptedEvent;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const rejectEvent = async (eventId, eventObservations) => {
+  try {
+    const rejectedEvent = await Event.findByIdAndUpdate(
+      { _id: eventId },
+      { state: "Reject", observations: eventObservations },
+      { new: true }
+    );
+    return rejectedEvent;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -84,8 +124,11 @@ const deleteEvent = async (eventId) => {
 
 export const eventService = {
   getAllEvents,
+  getAllMyEvents,
   getOneEvent,
   createEvent,
   updateEvent,
   deleteEvent,
+  acceptEvent,
+  rejectEvent,
 };

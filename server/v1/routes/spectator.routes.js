@@ -5,44 +5,46 @@ import { spectatorController } from "../../controllers/spectator.controller.js";
 
 const router = Router();
 
-//TODO: Segmentar las rutas para que solo el administrador pueda acceder a ellas
-
-//*No se necesita ser admin para ver los spectators por que se requeriran luego
-
+//See all spectators
 router.get(
-  "auth/spectators",
+  "/auth/spectators",
   authenticationRequired,
   spectatorController.getAllSpectators
 );
 
+//See all my spectators
 router.get(
   "/auth/admin/spectators/me",
   authenticationRequired,
   spectatorController.getAllMySpectators
 );
 
+//See one spectator
 router.get(
-  "auth/spectators/:id([0-9a-fA-F]{24})",
+  "/auth/spectators/:id([0-9a-fA-F]{24})",
   authenticationRequired,
   spectatorController.getOneSpectator
 );
 
+//Create a new spectator
 router.post(
-  "auth/admin/spectators",
+  "/auth/admin/spectators",
   authenticationRequired,
   authorizationRequired,
   spectatorController.createSpectator
 );
 
+//Update a spectator
 router.put(
-  "auth/admin/spectators/:id([0-9a-fA-F]{24})",
+  "/auth/admin/spectators/:id([0-9a-fA-F]{24})",
   authenticationRequired,
   authorizationRequired,
   spectatorController.updateSpectator
 );
 
+//Delete a spectator
 router.delete(
-  "auth/admin/spectators/:id([0-9a-fA-F]{24})",
+  "/auth/admin/spectators/:id([0-9a-fA-F]{24})",
   authenticationRequired,
   authorizationRequired,
   spectatorController.deleteSpectator

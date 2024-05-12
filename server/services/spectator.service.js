@@ -2,7 +2,10 @@ import Spectator from "../database/models/spectator.model.js";
 
 const getAllSpectators = async () => {
   try {
-    const allAssistance = await Spectator.find().populate("user_id");
+    const allAssistance = await Spectator.find().populate({
+      path: "user_id",
+      select: "first_name last_name email campus department position",
+    });
     return allAssistance;
   } catch (error) {
     throw new Error(error.message);
@@ -11,7 +14,7 @@ const getAllSpectators = async () => {
 
 const getAllMySpectators = async (userId) => {
   try {
-    const allMySpectators = await spectatorService.find({ user_id: userId });
+    const allMySpectators = await Spectator.find({ user_id: userId });
     return allMySpectators;
   } catch (error) {
     throw new Error(error.message);
@@ -37,7 +40,7 @@ const getOneSpectator = async (spectatorId) => {
 const createSpectator = async (spectatorData, userId) => {
   try {
     const newSpectator = new Spectator({
-      user: userId,
+      user_id: userId,
       ...spectatorData,
     });
     await newSpectator.save();

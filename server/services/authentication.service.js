@@ -78,7 +78,7 @@ const logout = async (token) => {
 const authStatus = async (userId) => {
   try {
     const userRole = await User.findById(userId).select("role");
-    return { message: "Authenticated", userRole };
+    return userRole;
   } catch (error) {
     throw new Error(error.message);
   }
